@@ -7,17 +7,24 @@ const fibonacci = (n , mem = {}) => {
 
 function memoizedFibonacci() {
   let cache = {};
-  return function (n) {
-    if (n in cache) {
-      return cache[n];
-    } else {
-      cache[n] = fibonacci(n);
-      return cache[n];
+  return { 
+    get: function (n) {
+      if (n in cache) {
+        return cache[n];
+      } else {
+        cache[n] = fibonacci(n);
+        return cache[n];
+      }
+    },
+    calculated: function() {
+      return cache;
     }
   }
 }
 
 let memoizedFibonacciInstance = memoizedFibonacci();
 
-for (var i = 0; i < 50; i++) console.log(memoizedFibonacciInstance(i));
+for (var i = 0; i < 50; i++) console.log(memoizedFibonacciInstance.get(i));
+
+console.log(memoizedFibonacciInstance.calculated());
 
