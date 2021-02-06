@@ -18,16 +18,5 @@ function memoizedFibonacci() {
 
 let memoizedFibonacciInstance = memoizedFibonacci();
 
-// Performs calculation
-console.log(memoizedFibonacciInstance(25));
-
-// Performs calculation
-console.log(memoizedFibonacciInstance(15));
-
-// Returns cached value
-console.log(memoizedFibonacciInstance(25));
-console.log(memoizedFibonacciInstance(15));
-console.log(memoizedFibonacciInstance(25));
-console.log(memoizedFibonacciInstance(15));
-console.log(memoizedFibonacciInstance(50));
+for (var i = 0; i < 50; i++) console.log(memoizedFibonacciInstance(i));
 
