@@ -1,8 +1,9 @@
-
-function fibonacci(n) {
-  if (n <= 1) return n;
-  return (fibonacci(n-1) + fibonacci(n-2))
-}
+const fibonacci = (n , mem = {}) => {
+  if (n in mem) return mem[n];
+  if (n <= 2) return 1;
+  mem [n] = fibonacci(n-1, mem) + fibonacci(n-2, mem);
+  return mem[n];
+};
 
 function memoizedFibonacci() {
   let cache = {};
@@ -28,6 +29,8 @@ console.log(memoizedFibonacciInstance(15));
 console.log(memoizedFibonacciInstance(25));
 console.log(memoizedFibonacciInstance(15));
 console.log(memoizedFibonacciInstance(25));
-console.log(memoizedFibonacciInstance(15));
 console.log(memoizedFibonacciInstance(50));
+
+// Calculate
+console.log(memoizedFibonacciInstance(100));
 
