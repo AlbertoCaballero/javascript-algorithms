@@ -12,3 +12,11 @@ console.log(numbers.filter(e => e > 5))
 console.log(numbers.reduce((max, num) => num > max ? num : max))
 console.log(numbers.reduce((min, num) => num < min ? num : min))
 
+// Every
+console.log(numbers.every(e => e > 0))
+
+// Every
+console.log(numbers.every(e => e > 0))
+
+// Fill
+console.log(numbers.fill(0,2,5))
