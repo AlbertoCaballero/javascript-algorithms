@@ -1,7 +1,7 @@
-const numbers = [...Array(50).keys()]
+const numbers = [...Array(20).keys()]
 
 function isPrime(n) {
-  if (n == 1) return 'Neither';
+  if (n <= 1) return 'Neither';
 
   let flag = true;
   if (n > 1) {
