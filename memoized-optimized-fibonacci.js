@@ -1,6 +1,6 @@
 const fibonacci = (n , mem = {}) => {
   if (n in mem) return mem[n];
-  if (n <= 2) return 1;
+  if (n <= 1) return 1;
   mem [n] = fibonacci(n-1, mem) + fibonacci(n-2, mem);
   return mem[n];
 };
