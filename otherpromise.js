@@ -1,11 +1,11 @@
 const promiseA = new Promise( (resolve,reject) => {
-        resolve(
-                () => {
-                        a = 5;
-                        b = 10;
-                        return a + b;
-                }
-        );
+  resolve(
+    () => {
+      a = 5;
+      b = 10;
+      return a + b;
+    }
+  );
 });
 
 // At this point, "promiseA" is already settled.
