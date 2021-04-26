@@ -1,29 +1,22 @@
 // Write a function to find the longest common prefix string amongs an array of strings
 // If there is common prefix, return an empty string
 
-const longestCommonPrefix = (list: String[]) => {
+function longestCommonPrefix(list: String[]): String {
     let first: String = list[0];
     let common: String = "";
-
     for (let i in first) {
         let results: boolean[] = [];
-        for (let word of list)
-            results.push(firstCommonCharacters(first.slice(0, parseInt(i) + 1), word));
-
-        if (results.every(e => e == true))
-            common = first.slice(0, parseInt(i) + 1)
-        else
-            break;
+        let slice = first.slice(0, parseInt(i) + 1);
+        list.forEach(word => results.push(firstCommonCharacters(slice, word)));
+        if (results.every(e => e == true)) common = slice;
+        else break;
     }
-
     return common;
 };
 
-const firstCommonCharacters = (characters: String, word: String): boolean => {
-    let flag: boolean[] = [];
-    for (let i in characters)
-        flag.push(characters[i] == word[i]);
-    return flag.every((e) => e == true);
+function firstCommonCharacters(characters: String, word: String): boolean {
+    for (let i in characters) if (characters[i] != word[i]) return false;
+    return true;
 };
 
 let common: String[] = ["flower", "flow", "flight"];
