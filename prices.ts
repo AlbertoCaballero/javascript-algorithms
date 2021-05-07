@@ -31,4 +31,10 @@ let total = 0;
 cars.forEach(e => total += e.price);
 console.log(total);
 
+console.log(cars.reduce((acc, curr) => {
+  let temp = new Car();
+  temp.price = acc.price + curr.price;
+  return temp;
+}).price);
+
 console.log(cars);
