@@ -1,14 +1,14 @@
 class ListNode {
   val: number
-  next: ListNode | null
-  constructor(val?: number, next?: ListNode | null) {
+  next?: ListNode
+  constructor(val?: number, next?: ListNode) {
     this.val = (val === undefined ? 0 : val)
     this.next = (next === undefined ? null : next)
   }
 }
 
 // Should return the sum of two integers stores by character in reverse order in a linked list
-function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+function addTwoNumbers(l1?: ListNode, l2?: ListNode): ListNode {
   return null;
 }
 
@@ -37,5 +37,5 @@ function reverse(list: ListNode): ListNode {
 }
 
 // Define a simple linked list
-let linkedList: ListNode = new ListNode(5, new ListNode(10, new ListNode(15, null)));
+let linkedList: ListNode = new ListNode(5, new ListNode(10, new ListNode(15, new ListNode(20, null))));
 printList(linkedList);
