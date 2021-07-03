@@ -17,11 +17,10 @@ b &&=10;
 console.log(b);
 
 // if either of the values are valid assign right value
-let i;
-i ||= undefined;
-console.log(i);
+let k;
+k ||= undefined;
+console.log(k);
 
 let j;
 j ||= 10;
 console.log(j);
-
