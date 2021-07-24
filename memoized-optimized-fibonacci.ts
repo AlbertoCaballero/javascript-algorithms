@@ -1,4 +1,4 @@
-const fibonacci = (n, mem = {}) => {
+const fibonacci = (n: number, mem: number[] = []) => {
   if (n in mem) return mem[n];
   if (n <= 1) return 1;
   mem[n] = fibonacci(n-1, mem) + fibonacci(n-2, mem);
@@ -6,9 +6,9 @@ const fibonacci = (n, mem = {}) => {
 };
 
 function memoizedFibonacci() {
-  let cache = {};
+  let cache: number[] = [];
   return {
-    get: function(n) {
+    get: function(n: number) {
       if (n in cache) return cache[n];
       cache[n] = fibonacci(n);
       return cache[n];
