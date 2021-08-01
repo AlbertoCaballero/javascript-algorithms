@@ -1,4 +1,4 @@
-const memo = (fn: Function) => {
+const memoize = (fn: Function) => {
   let memory: any = [];
   return (anything: any) => {
     if(anything in memory) {
@@ -11,9 +11,9 @@ const memo = (fn: Function) => {
   };
 };
 
-const upperCase = memo((a: String) => a.toUpperCase());
+const upperCase = memoize((a: String) => a.toUpperCase());
 upperCase('8astion');
 
-const otherUpperCase = (anything: any) => memo((a: String) => a.toUpperCase())(anything);
+const otherUpperCase = (anything: any) => memoize((a: String) => a.toUpperCase())(anything);
 otherUpperCase('8astion');
 
