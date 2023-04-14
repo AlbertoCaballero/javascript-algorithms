@@ -64,3 +64,106 @@ logLength({length: 52, name: 'Amara'}) // 52
 logLength([1,2,3]) // 3
 logLength('Orange') // 6
 
+// Create generic function with a type helper
+const makeFetch = <TData>(url: string): Promise<TData> => {
+  return fetch(url).then((res) => res.json());
+};
+
+makeFetch<{ name: string; email: string }>(
+  "/api/edpoint"
+).then((res) => {
+  console.log(res);
+});
+
+// TS can infer the generic types at runtime
+// const addIdToObject = <T>(obj: T): T & {id: string} => {
+const addIdToObject = <TObj>(obj: TObj) => {
+  return {
+    ...obj,
+    id: "369"
+  };
+};
+
+const result = addIdToObject<{
+  name: string;
+  email: string;
+}>({
+  name: "Joe",
+  email: "joe@doe.com",
+});
+
+const resultNoTypeArg = addIdToObject({
+  name: "Joe",
+  email: "joe@doe.com",
+});
+
+resultNoTypeArg.id;
+
+// Constrain to only use function-like type
+type GetPromiseReturnType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
+type Result = GetPromiseReturnType<() => Promise<{
+  id: string;
+  num: string;
+}>>;
+// type OutOfConstrain = GetPromiseReturnType<string>;
+
+// Constrain generics passed in
+const getKeyWithHighestValue = <TObj extends Record<string, number>>(obj: TObj): {
+  key: keyof TObj;
+  val: number;
+} => {
+  const keys = Object.keys(obj) as Array<keyof TObj>;
+  let highestKey: keyof TObj = keys[0];
+  let highestVal = obj[highestKey];
+
+  for (const key of keys) {
+    if (obj[key] > highestVal) {
+      highestKey = key;
+      highestVal = obj[key];
+    }
+  }
+
+  return {
+    key: highestKey,
+    val: highestVal,
+  };
+};
+
+const resHighKeyVal = getKeyWithHighestValue({
+  a: 1,
+  b: 10,
+  c: 100,
+});
+
+const { key, val } = resHighKeyVal;
+
+// Assertions in case TS can't infer
+const typedObjKeys = <TObj extends {}>(obj: TObj) => {
+  return Object.keys(obj) as Array<keyof TObj>;
+};
+
+const res = typedObjKeys({
+  name: "Alb",
+  age: 24,
+});
+
+// Multiple generics
+const getValue = <TObj, TKey extends keyof TObj>(obj: TObj, key: TKey) => {
+  if(key === "error") {
+    throw Error("Bad key!");
+  }
+  return obj[key];
+};
+
+const value = getValue({
+  a: 1,
+  b: "something",
+  c: true
+}, "b");
+
+// Default type params
+const createSet = <T = string>() => {
+  return new Set<T>();
+};
+const numberSet = createSet<number>();
+const stringSet = createSet();
