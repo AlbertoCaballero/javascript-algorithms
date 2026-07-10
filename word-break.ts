@@ -21,3 +21,7 @@ function check(word: string, dict: string[]): boolean {
 
     return holder === "";
 }
+
+const tes = "catsandog";
+const wrds = ["cats", "dog", "sand", "and", "cat"];
+console.log(wordBreak(tes, wrds));
