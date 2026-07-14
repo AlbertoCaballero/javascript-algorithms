@@ -1,12 +1,21 @@
-function wordBreak(s: string, wordDict: string[]): boolean {
-    let results: boolean[] = [];
-
-    results.push(check(s, wordDict, true));
-    results.push(check(s, wordDict, false));
-
-    return results.includes(true);
+function wordBreak(word: string, wordDict: string[]): boolean {
+    const dictSet = new Set(wordDict);
+    const n = word.length;
+    const dp: boolean[] = new Array(n + 1).fill(false);
+    dp[0] = true;
+    for (let i = 1; i <= n; i++) {
+        for (let j = 0; j < i; j++) {
+            if (dp[j] && dictSet.has(word.substring(j, i))) {
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+    return dp[n];
 }
 
+// aproximation, not real correctness
+// 45 / 48 testcases passed
 function check(word: string, dict: string[], preferLongest: boolean): boolean {
     const sorted = [...dict].sort((a, b) =>
         preferLongest ? b.length - a.length : a.length - b.length,
@@ -18,6 +27,22 @@ function check(word: string, dict: string[], preferLongest: boolean): boolean {
         i += match.length;
     }
     return true;
+}
+
+// aproximation, not real correctness
+// 44 / 48 testcases passed
+function check2(word: string, dict: string[]): boolean {
+    let holder = word;
+
+    dict.forEach((word) => {
+        while (holder.includes(word)) {
+            holder = holder.replaceAll(word, " ");
+        }
+        holder = holder.replaceAll(" ", "");
+    });
+
+    // holder = holder.replaceAll(" ", "");
+    return holder === "";
 }
 
 const tes = "catsandog";
