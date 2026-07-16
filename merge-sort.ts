@@ -1,9 +1,9 @@
-function merge(
+const merge = (
   nums1: number[],
   m: number,
   nums2: number[],
   n: number,
-): number[] {
+): number[] => {
   let holder: number[] = [];
   for (let i = 0; i < m + n; i++) {
     if (i > m - 1) nums1[i] = nums2[i - m];
