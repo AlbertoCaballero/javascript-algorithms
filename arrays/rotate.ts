@@ -1,15 +1,16 @@
 function rotate(nums: number[], k: number): number[] {
   // normalize k becasue js/ts modulo makes no sense
-  k = ((k % nums.length) + nums.length) % nums.length;
+  const n = nums.length;
+  k = ((k % n) + n) % n;
 
   if (k === 0) return nums;
   const duplicate: number[] = [...nums];
-  for (let i = 0; i < nums.length; i++) {
+  for (let i = 0; i < n; i++) {
     // left rotation
-    // const shifted = (i + k) % nums.length;
+    // const shifted = (i + k) % n;
 
     // right rotation
-    const shifted = (i + nums.length - k) % nums.length;
+    const shifted = (i + n - k) % n;
 
     // console.log(`${i}: ${nums[i]} ${shifted}: ${duplicate[shifted]}`);
     nums[i] = duplicate[shifted];
