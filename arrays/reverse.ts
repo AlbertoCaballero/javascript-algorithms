@@ -10,9 +10,9 @@ const reverseString = (arr: string): string => {
     left++;
     right--;
   }
-  return chars.concat().toString();
+  return chars.concat().join("");
 };
 
 console.log(userName);
-console.log([...userName].reverse().concat().toString());
+console.log([...userName].reverse().concat().join(""));
 console.log(reverseString(userName));
